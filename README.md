@@ -1,7 +1,6 @@
 # DucontTest
 This android project shows list of news for NYTimes using MVP architecture.
 It uses Retrofit library for webservice call and eventbus library for fragment and activity communication.
-This does not contain test cases as I did not get sufficient time to write test cases because of my project work.
 
 1. details
     This package contains classes related to show newdetails.
