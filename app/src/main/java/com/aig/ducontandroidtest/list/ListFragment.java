@@ -2,6 +2,7 @@ package com.aig.ducontandroidtest.list;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -18,6 +19,7 @@ import android.view.ViewGroup;
 
 import com.aig.ducontandroidtest.R;
 import com.aig.ducontandroidtest.list.adapter.ListAdapter;
+import com.aig.ducontandroidtest.list.adapter.RecyclerTouchListener;
 import com.aig.ducontandroidtest.models.list.PopulatListResponse;
 import com.aig.ducontandroidtest.models.list.Result;
 import com.aig.ducontandroidtest.retrofit.APIService;
@@ -71,7 +73,7 @@ public class ListFragment extends Fragment implements MainView{
         dialog.setMessage("Loading...");
 
         arrListData = new ArrayList<>();
-        mAdapter = new ListAdapter(arrListData, mListener);
+        mAdapter = new ListAdapter(arrListData);
 
 
     }
@@ -90,6 +92,18 @@ public class ListFragment extends Fragment implements MainView{
                 recyclerView.setItemAnimator(new DefaultItemAnimator());
                 recyclerView.setAdapter(mAdapter);
             }
+
+            recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), recyclerView, new RecyclerTouchListener.ClickListener() {
+                @Override
+                public void onClick(View view, int position) {
+                   mListener.onListFragmentInteraction(arrListData.get(position));
+                }
+
+                @Override
+                public void onLongClick(View view, int position) {
+
+                }
+            }));
 
             mainPresenter = new MainPresenterImpl(this);
             mainPresenter.getListData();
@@ -132,7 +146,7 @@ public class ListFragment extends Fragment implements MainView{
     @Override
     public void onResume() {
         super.onResume();
-        getActivity().setTitle("News");
+        getActivity().setTitle(getString(R.string.str_title));
         ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayShowHomeEnabled(false);
     }
@@ -140,7 +154,7 @@ public class ListFragment extends Fragment implements MainView{
     @Override
     public void showDataOnFragment(List<Result> arrList) {
         arrListData = arrList;
-        mAdapter = new ListAdapter(arrList, mListener);
+        mAdapter = new ListAdapter(arrList);
         recyclerView.setAdapter(mAdapter);
 
     }

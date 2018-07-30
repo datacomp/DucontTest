@@ -15,33 +15,17 @@ import com.aig.ducontandroidtest.models.list.Result;
 
 import java.util.List;
 
-public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder> {
+public class ListAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
     private Context mContext;
     private List<Result> resultList;
     public ListFragment.OnListFragmentInteractionListener mListener;
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView txtTitle, txtAbstract, txtDate, txtSection;
-        public View mView;
-        public Button btnViewDetails;
-        public Result mItem;
 
-        public MyViewHolder(View view) {
-            super(view);
-            txtTitle =  view.findViewById(R.id.txtTitle);
-            txtAbstract = view.findViewById(R.id.textView2);
-            txtDate = view.findViewById(R.id.textView4);
-            txtSection = view.findViewById(R.id.textView3);
-            mView = view;
-        }
-    }
-
-
-    public ListAdapter(List<Result> resultList,ListFragment.OnListFragmentInteractionListener listener) {
+    public ListAdapter(List<Result> resultList) {
 //        this.mContext = mContext;
         this.resultList = resultList;
-        this.mListener = listener;
+//        this.mListener = listener;
     }
 
     @Override
@@ -49,12 +33,14 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder> 
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_item, parent, false);
 
+        itemView.setTag(new RecyclerPresenter());
+
         return new MyViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
-        Result result = resultList.get(position);
+/*        Result result = resultList.get(position);
         holder.mItem = result;
         holder.txtTitle.setText(result.getTitle());
         holder.txtAbstract.setText(result.getAbstract());
@@ -70,7 +56,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder> 
                 }
             }
         });
-        Log.e("****", result.getTitle());
+        Log.e("****", result.getTitle());*/
 
        /* // loading album cover using Glide library
         Glide.with(mContext).load(album.getThumbnail()).into(holder.thumbnail);
@@ -80,13 +66,35 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder> 
                 showPopupMenu(holder.overflow);
             }
         });*/
-    }
 
+        ((RecyclerPresenter) holder.itemView.getTag()).presentListItem(holder, resultList.get(position));
+    }
 
     @Override
     public int getItemCount() {
         return resultList.size();
     }
+
+    /*public static class Presenter {
+        void presentListItem(final MyViewHolder holder, Result result) {
+            holder.mItem = result;
+            holder.txtTitle.setText(result.getTitle());
+            holder.txtAbstract.setText(result.getAbstract());
+            holder.txtDate.setText(result.getPublishedDate());
+            holder.txtSection.setText(result.getSection());
+            holder.mView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (null != mListener) {
+                        // Notify the active callbacks interface (the activity, if the
+                        // fragment is attached to one) that an item has been selected.
+                        mListener.onListFragmentInteraction(holder.mItem);
+                    }
+                }
+            });
+            Log.e("****", result.getTitle());
+        }
+    }*/
 
 
 }

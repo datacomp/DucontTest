@@ -63,7 +63,7 @@ public class DetailFragment extends Fragment implements newsDetailsView{
         txtDate = view.findViewById(R.id.txtDateDetails);
         imgBanner = view.findViewById(R.id.img_banner);
 
-        getActivity().setTitle(result.getSource());
+        getActivity().setTitle(result.getTitle());
 
         ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayShowHomeEnabled(true);
