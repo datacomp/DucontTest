@@ -1,8 +1,9 @@
-package com.aig.ducontandroidtest.list;
+package com.aig.ducontandroidtest.list.presenter;
 
 import android.util.Log;
 
 import com.aig.ducontandroidtest.list.adapter.ListAdapter;
+import com.aig.ducontandroidtest.list.view.MainView;
 import com.aig.ducontandroidtest.models.list.PopulatListResponse;
 import com.aig.ducontandroidtest.models.list.Result;
 import com.aig.ducontandroidtest.retrofit.APIService;
@@ -30,7 +31,7 @@ public class MainPresenterImpl implements MainPresenter {
     @Override
     public void getListData() {
 
-        mainView.showDialog();
+        showDialog();
 
         Call<PopulatListResponse> callGetData = apiService.getMostPopularList(Constants.API_KEY);
         callGetData.enqueue(new Callback<PopulatListResponse>() {
@@ -41,15 +42,23 @@ public class MainPresenterImpl implements MainPresenter {
 
                 mainView.showDataOnFragment(arrListData);
 
-                mainView.cancelDialog();
+                cancelDialog();
             }
 
             @Override
             public void onFailure(Call<PopulatListResponse> call, Throwable t) {
                 Log.e(TAG, "Error Response : "+t.getMessage());
-                mainView.cancelDialog();
+                cancelDialog();
             }
         });
 
+    }
+
+    public void cancelDialog(){
+        mainView.cancelDialog();
+    }
+
+    public void showDialog(){
+        mainView.showDialog();
     }
 }

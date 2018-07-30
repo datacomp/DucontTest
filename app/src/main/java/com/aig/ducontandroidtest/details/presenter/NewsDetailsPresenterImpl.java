@@ -1,16 +1,11 @@
-package com.aig.ducontandroidtest.details;
+package com.aig.ducontandroidtest.details.presenter;
 
-import android.util.Log;
-
+import com.aig.ducontandroidtest.details.view.newsDetailsView;
 import com.aig.ducontandroidtest.models.list.Result;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class NewsDetailsPresenterImpl implements NewsDetailsPresenter {
 
-    private newsDetailsView newsDetailsView;
+    private com.aig.ducontandroidtest.details.view.newsDetailsView newsDetailsView;
     private String TAG = NewsDetailsPresenterImpl.class.getSimpleName();
     private Result newsDetails;
 

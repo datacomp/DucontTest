@@ -1,4 +1,4 @@
-package com.aig.ducontandroidtest.details;
+package com.aig.ducontandroidtest.details.view;
 
 import com.aig.ducontandroidtest.models.list.Result;
 

@@ -1,27 +1,11 @@
-package com.aig.ducontandroidtest.details;
+package com.aig.ducontandroidtest.details.view;
 
-import android.app.Fragment;
 import android.app.ProgressDialog;
-import android.content.ComponentName;
-import android.content.Intent;
-import android.content.pm.LabeledIntent;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.aig.ducontandroidtest.R;
+import com.aig.ducontandroidtest.details.presenter.NewsDetailsPresenterImpl;
 import com.aig.ducontandroidtest.models.list.Result;
-import com.bumptech.glide.Glide;
-import java.util.ArrayList;
-import java.util.List;
 
 public class NewsDetailsActivity extends AppCompatActivity implements newsDetailsView {
 

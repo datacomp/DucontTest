@@ -1,23 +1,19 @@
-package com.aig.ducontandroidtest.list;
+package com.aig.ducontandroidtest.list.view;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 
 import com.aig.ducontandroidtest.R;
-import com.aig.ducontandroidtest.details.DetailFragment;
+import com.aig.ducontandroidtest.details.view.DetailFragment;
 import com.aig.ducontandroidtest.eventbus.Events;
 import com.aig.ducontandroidtest.eventbus.GlobalBus;
-import com.aig.ducontandroidtest.list.adapter.ListAdapter;
 import com.aig.ducontandroidtest.models.list.Result;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements ListFragment.OnListFragmentInteractionListener {
 

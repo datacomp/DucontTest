@@ -8,5 +8,5 @@
     android:layout_height="match_parent"
     android:padding="5dp"
     app:layoutManager="LinearLayoutManager"
-    tools:context=".list.ListFragment"
+    tools:context=".list.view.ListFragment"
     tools:listitem="@layout/fragment_item" />

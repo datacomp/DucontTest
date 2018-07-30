@@ -1,4 +1,4 @@
-package com.aig.ducontandroidtest.list;
+package com.aig.ducontandroidtest.list.presenter;
 
 public interface MainPresenter {
 
