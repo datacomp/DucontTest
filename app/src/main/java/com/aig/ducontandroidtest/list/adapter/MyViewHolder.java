@@ -8,18 +8,32 @@ import android.widget.TextView;
 import com.aig.ducontandroidtest.R;
 import com.aig.ducontandroidtest.models.list.Result;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MyViewHolder extends RecyclerView.ViewHolder {
-    public TextView txtTitle, txtAbstract, txtDate, txtSection;
+
+    @BindView(R.id.txtTitle)
+    public TextView txtTitle;
+
+    @BindView(R.id.textView2)
+    public TextView txtAbstract;
+
+    @BindView(R.id.textView4)
+    public TextView txtDate;
+
+    @BindView(R.id.textView3)
+    public TextView txtSection;
+
     public View mView;
-    public Button btnViewDetails;
+//    public Button btnViewDetails;
     public Result mItem;
 
     public MyViewHolder(View view) {
         super(view);
-        txtTitle = view.findViewById(R.id.txtTitle);
-        txtAbstract = view.findViewById(R.id.textView2);
-        txtDate = view.findViewById(R.id.textView4);
-        txtSection = view.findViewById(R.id.textView3);
+
         mView = view;
+        ButterKnife.bind(this,view);
+
     }
 }

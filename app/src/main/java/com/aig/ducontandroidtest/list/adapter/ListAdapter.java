@@ -15,8 +15,6 @@ import java.util.List;
 public class ListAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
     private List<Result> resultList;
-    public ListFragment.OnListFragmentInteractionListener mListener;
-
 
     public ListAdapter(List<Result> resultList) {
         this.resultList = resultList;

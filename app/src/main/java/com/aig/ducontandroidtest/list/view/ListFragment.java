@@ -36,7 +36,7 @@ public class ListFragment extends Fragment implements MainView{
     private ProgressDialog dialog;
     private MainPresenterImpl mainPresenter;
     private View mView;
-    private Toolbar mToolbar;
+//    private Toolbar mToolbar;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
