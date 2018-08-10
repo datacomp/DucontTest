@@ -36,9 +36,9 @@ public class MainPresenterImplTest {
     public void getListData() throws Exception {
 
         APIService apiService = Mockito.mock(APIService.class);
-//        verify(apiService,times(1)).getMostPopularList(Constants.API_KEY);
+//        verify(apiService,times(1)).getMostPopularList(Constants.API_KEY_VAL);
         Call<PopulatListResponse> response = Mockito.mock(Call.class);
-        Mockito.when(apiService.getMostPopularList(Constants.API_KEY)).thenReturn(response);
+        Mockito.when(apiService.getMostPopularList(Constants.API_KEY_VAL)).thenReturn(response);
 
     }
 
