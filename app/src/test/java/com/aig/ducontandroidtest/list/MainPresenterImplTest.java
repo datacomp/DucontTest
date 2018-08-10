@@ -39,6 +39,7 @@ public class MainPresenterImplTest {
 //        verify(apiService,times(1)).getMostPopularList(Constants.API_KEY_VAL);
         Call<PopulatListResponse> response = Mockito.mock(Call.class);
         Mockito.when(apiService.getMostPopularList(Constants.API_KEY_VAL)).thenReturn(response);
+        verify(response, times(0)).execute();
 
     }
 
