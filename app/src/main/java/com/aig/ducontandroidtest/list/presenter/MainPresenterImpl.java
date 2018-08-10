@@ -33,7 +33,7 @@ public class MainPresenterImpl implements MainPresenter {
 
         showDialog();
 
-        Call<PopulatListResponse> callGetData = apiService.getMostPopularList(Constants.API_KEY);
+        Call<PopulatListResponse> callGetData = apiService.getMostPopularList(Constants.API_KEY_VAL);
         callGetData.enqueue(new Callback<PopulatListResponse>() {
             @Override
             public void onResponse(Call<PopulatListResponse> call, Response<PopulatListResponse> response) {
