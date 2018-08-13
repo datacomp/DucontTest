@@ -8,5 +8,5 @@ import java.util.List;
 public interface MainView {
     void showDialog();
     void cancelDialog();
-    void showDataOnFragment(List<Result> arrList);
+//    void showDataOnFragment(List<Result> arrList);
 }

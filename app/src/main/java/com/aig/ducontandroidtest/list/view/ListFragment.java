@@ -13,10 +13,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.aig.ducontandroidtest.R;
+import com.aig.ducontandroidtest.eventbus.Events;
+import com.aig.ducontandroidtest.eventbus.GlobalBus;
 import com.aig.ducontandroidtest.list.presenter.MainPresenterImpl;
 import com.aig.ducontandroidtest.list.adapter.ListAdapter;
 import com.aig.ducontandroidtest.list.adapter.RecyclerTouchListener;
+import com.aig.ducontandroidtest.models.list.PopulatListResponse;
 import com.aig.ducontandroidtest.models.list.Result;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,6 +69,7 @@ public class ListFragment extends Fragment implements MainView{
         arrListData = new ArrayList<>();
         mAdapter = new ListAdapter(arrListData);
 
+        GlobalBus.getEventBus().register(this);
 
     }
 
@@ -117,6 +124,7 @@ public class ListFragment extends Fragment implements MainView{
     public void onDetach() {
         super.onDetach();
         mListener = null;
+        GlobalBus.getEventBus().unregister(this);
     }
 
     @Override
@@ -139,7 +147,7 @@ public class ListFragment extends Fragment implements MainView{
         ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayShowHomeEnabled(false);
     }
 
-    @Override
+//    @Override
     public void showDataOnFragment(List<Result> arrList) {
         arrListData = arrList;
         mAdapter = new ListAdapter(arrList);
@@ -150,5 +158,15 @@ public class ListFragment extends Fragment implements MainView{
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
         void onListFragmentInteraction(Result item);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+    public void getMessage(Events.ServiceToUI serviceToUI){
+        Object response = serviceToUI.getMessage();
+        if(response instanceof PopulatListResponse){
+            arrListData = ((PopulatListResponse) response).getResults();
+
+           showDataOnFragment(arrListData);
+        }
     }
 }

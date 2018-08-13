@@ -8,6 +8,7 @@ import com.aig.ducontandroidtest.models.list.PopulatListResponse;
 import com.aig.ducontandroidtest.models.list.Result;
 import com.aig.ducontandroidtest.retrofit.APIService;
 import com.aig.ducontandroidtest.retrofit.RetrofitClient;
+import com.aig.ducontandroidtest.retrofit.RetrofitListener;
 import com.aig.ducontandroidtest.util.Constants;
 
 import java.util.List;
@@ -32,8 +33,10 @@ public class MainPresenterImpl implements MainPresenter {
     public void getListData() {
 
         showDialog();
-
         Call<PopulatListResponse> callGetData = apiService.getMostPopularList(Constants.API_KEY_VAL);
+        callGetData.enqueue(new RetrofitListener<PopulatListResponse>(this.mainView));
+
+        /*Call<PopulatListResponse> callGetData = apiService.getMostPopularList(Constants.API_KEY_VAL);
         callGetData.enqueue(new Callback<PopulatListResponse>() {
             @Override
             public void onResponse(Call<PopulatListResponse> call, Response<PopulatListResponse> response) {
@@ -50,13 +53,13 @@ public class MainPresenterImpl implements MainPresenter {
                 Log.e(TAG, "Error Response : "+t.getMessage());
                 cancelDialog();
             }
-        });
+        });*/
 
     }
 
-    public void cancelDialog(){
+   /* public void cancelDialog(){
         mainView.cancelDialog();
-    }
+    }*/
 
     public void showDialog(){
         mainView.showDialog();

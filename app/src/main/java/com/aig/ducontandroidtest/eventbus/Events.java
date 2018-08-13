@@ -43,4 +43,16 @@ public class Events {
             return message;
         }
     }
+
+    public static class ServiceToUI{
+        Object message;
+
+        public ServiceToUI(Object message) {
+            this.message = message;
+        }
+
+        public Object getMessage() {
+            return message;
+        }
+    }
 }
